@@ -1,3 +1,25 @@
 {
-  "events": []
+    "events": [
+        {
+            "event_name": "userRegistered",
+            "status": true,
+            "created_at": "2026-04-06T21:27:14Z",
+            "updated_at": "2026-04-06T21:27:14Z",
+            "listeners": []
+        },
+        {
+            "event_name": "nameRegistered",
+            "status": true,
+            "created_at": "2026-04-06T21:29:54Z",
+            "updated_at": "2026-04-06T21:29:54Z",
+            "listeners": []
+        },
+        {
+            "event_name": "nameRegisteredw",
+            "status": true,
+            "created_at": "2026-04-06T22:06:51Z",
+            "updated_at": "2026-04-06T22:06:51Z",
+            "listeners": []
+        }
+    ]
 }
