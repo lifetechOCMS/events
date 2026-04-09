@@ -10,29 +10,47 @@ class LtEvent
         EventConfig::setEventFile($filePath);
     }
 
-    public static function register(string $eventName, bool $status = true): array
+    public static function register(string $eventName, array $listeners=[], bool $status = true): array | string
     {
         $eventFile = EventConfig::getEventFile();
 
-        // Load file
         $load = EventConfig::loadJson($eventFile, 'events');
-        if (($load['responseCategory'] ?? '100') !== '200') {
-            return $load;
+        if ($load['responseCategory'] !== '200') {
+            return EventConfig::output($load);
         }
 
         $data = $load['responseData'];
 
-        // Check duplicate
         foreach ($data['events'] as $event) {
             if (($event['event_name'] ?? null) === $eventName) {
-                return EventConfig::error(
-                    "Event already exists",
-                    "3812"
-                );
+                return EventConfig::output(EventConfig::error("Event already exists", "3820"));
             }
         }
 
-        // Create event
+
+        // Validate listeners array
+        if (!empty($listeners)) {
+            $loadListeners = EventConfig::loadJson($listenerFile, 'listeners');
+
+            if ($loadListeners['responseCategory'] !== '200') {
+                return EventConfig::output($loadListeners);
+            }
+
+            $listenerData = $loadListeners['responseData'];
+            $registeredListeners = $listenerData['listeners'] ?? [];
+
+            foreach ($listeners as $listenerName) { 
+                $listenerIndex = EventConfig::findListenerIndex($listenerData, $listenerName);
+
+                if ($listenerIndex['responseCategory'] !== '200') {
+                    return EventConfig::output($listenerIndex);
+                }                
+            }
+
+            // Remove duplicate listener names, keep clean indexing
+            $listeners = array_values(array_unique($listeners));
+        }
+
         $now = EventConfig::now();
 
         $record = [
@@ -45,46 +63,9 @@ class LtEvent
 
         $data['events'][] = $record;
 
-        // Save
-        $save = EventConfig::saveJson($eventFile, $data);
-        if (($save['responseCategory'] ?? '100') !== '200') {
-            return $save;
-        }
-
-        // Success
-        return EventConfig::success(
-            "Event registered successfully",
-            "3811",
-            "200",
-            $record
-        );
+        return EventConfig::output(EventConfig::saveJson($eventFile, $data));
     }
-
-    public static function register(string $eventName, bool $status = true): bool
-    {
-        EventConfig::validateCamelCase($eventName, 'event name');
-
-        $eventFile = EventConfig::getEventFile();
-        $data = EventConfig::loadJson($eventFile, 'events');
-
-        foreach ($data['events'] as $event) {
-            if (($event['event_name'] ?? null) === $eventName) {
-                return false;
-            }
-        }
-
-        $now = EventConfig::now();
-
-        $data['events'][] = [
-            'event_name' => $eventName,
-            'status' => $status,
-            'created_at' => $now,
-            'updated_at' => $now,
-            'listeners' => []
-        ];
-
-        return EventConfig::saveJson($eventFile, $data);
-    }
+    
 
     public static function addListener(string $listenerName,string $listenerClass, string $handlerMethod = 'handle',bool $status = true ) : bool
     {
