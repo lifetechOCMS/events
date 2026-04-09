@@ -128,27 +128,26 @@ class EventConfig
         return gmdate('Y-m-d\TH:i:s\Z');
     }
   
-    public static function findEventIndex(array $data, string $eventName): ?int
+    public static function findEventIndex(array $data, string $eventName): array|string
     {
         foreach (($data['events'] ?? []) as $index => $event) {
             if (($event['event_name'] ?? null) === $eventName) {
                 //return $index;
-                return self::success("Listener found","3825","200",$index);
+                return self::success("{$index}","3825","200");
             }
         }
-
-        return null;
+        return self::error("Event not found: {$listenerName}","3822");
     }
 
-    public static function findListenerIndex(array $data, string $listenerName): ?int
+    public static function findListenerIndex(array $data, string $listenerName): array|string
     {
         foreach (($data['listeners'] ?? []) as $index => $listener) {
             if (($listener['listener_name'] ?? null) === $listenerName) {
                 //return $index;
-                return self::success("Listener found","3825","200",$index);
+                return self::success("{$index}","3826","200",);
             }
         }
-        return self::error("Listener not found: {$listenerName}","3822"); 
+        return self::error("Listener not found: {$listenerName}","3821"); 
     }
 
     public static function response( string $responseResult, string $responseCode = "3800",string $responseCategory = "100",    array $responseData = []     ): array 

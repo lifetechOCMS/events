@@ -30,6 +30,7 @@ class LtEvent
 
         // Validate listeners array
         if (!empty($listeners)) {
+            $listenerFile = EventConfig::getListenerFile();
             $loadListeners = EventConfig::loadJson($listenerFile, 'listeners');
 
             if ($loadListeners['responseCategory'] !== '200') {
@@ -58,7 +59,7 @@ class LtEvent
             'status' => $status,
             'created_at' => $now,
             'updated_at' => $now,
-            'listeners' => []
+            'listeners' => $listeners
         ];
 
         $data['events'][] = $record;
