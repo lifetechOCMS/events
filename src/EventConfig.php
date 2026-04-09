@@ -133,7 +133,7 @@ class EventConfig
         foreach (($data['events'] ?? []) as $index => $event) {
             if (($event['event_name'] ?? null) === $eventName) {
                 //return $index;
-                return self::success("{$index}","3825","200");
+                return self::success("{$index}","3825","200",['index'=>$index]);
             }
         }
         return self::error("Event not found: {$listenerName}","3822");
@@ -144,7 +144,7 @@ class EventConfig
         foreach (($data['listeners'] ?? []) as $index => $listener) {
             if (($listener['listener_name'] ?? null) === $listenerName) {
                 //return $index;
-                return self::success("{$index}","3826","200",);
+                return self::success("{$index}","3826","200",['index'=>$index]);
             }
         }
         return self::error("Listener not found: {$listenerName}","3821"); 
