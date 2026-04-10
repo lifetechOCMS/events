@@ -66,74 +66,103 @@ class LtEvent
         return EventConfig::output(EventConfig::saveJson($eventFile, $data));
     }
 
-    public static function deleteEvent(string $eventName): array|string
+    public static function delete(string $eventName): array|string
     {
         $eventFile = EventConfig::getEventFile();
 
-        $eventLoad = EventConfig::loadJson($eventFile, 'events');
-        if ($eventLoad['responseCategory'] !== '200') {
-            return EventConfig::output($eventLoad);
-        }
-
-        $eventData = $eventLoad['responseData'];
-
-        $eventCheck = EventConfig::findEventIndex($eventData, $eventName);
-        if ($eventCheck['responseCategory'] !== '200') {
-            return EventConfig::output($eventCheck);
-        }
-
-        $eventIndex = $eventCheck['responseData']['index'];
-        $deletedEvent = $eventData['events'][$eventIndex];
-
-        unset($eventData['events'][$eventIndex]);
-        $eventData['events'] = array_values($eventData['events']);
-
-        $save = EventConfig::saveJson($eventFile, $eventData);
-        if ($save['responseCategory'] !== '200') {
-            return EventConfig::output($save);
-        }
-
-        return EventConfig::output(
-            EventConfig::success("Event deleted successfully","3831","200",$deletedEvent)
-        );
-    }
-    
-    public static function addListener(string $listenerName,string $listenerClass,string $handlerMethod = 'handle', ?string $eventName = null,bool $status = true): array|string 
-    {
-        $listenerFile = EventConfig::getListenerFile(); 
-
-        // Load listener data
-        $load = EventConfig::loadJson($listenerFile, 'listeners');
+        $load = EventConfig::loadJson($eventFile, 'events');
         if ($load['responseCategory'] !== '200') {
             return EventConfig::output($load);
         }
 
         $data = $load['responseData'];
 
-        // Check if listener already exists
-        $listenerCheck = EventConfig::findListenerIndex($data, $listenerName);
-        if ($listenerCheck['responseCategory'] === '200') {
-            return EventConfig::output(EventConfig::error("Listener already exists", "3823"));
+        $eventCheck = EventConfig::findEventIndex($data, $eventName);
+        if ($eventCheck['responseCategory'] !== '200') {
+            return EventConfig::output($eventCheck);
         }
 
-        $now = EventConfig::now();
+        $eventIndex = $eventCheck['responseData']['index'];
+        $deletedEvent = $data['events'][$eventIndex];
 
-        $record = [
-            'listener_name'  => $listenerName,
-            'listener_class' => $listenerClass,
-            'handler_method' => $handlerMethod,
-            'status'         => $status,
-            'created_at'     => $now,
-            'updated_at'     => $now,
-        ];
+        unset($data['events'][$eventIndex]);
+        $data['events'] = array_values($data['events']);
 
-        $data['listeners'][] = $record;
+        $save = EventConfig::saveJson($eventFile, $data);
+        if ($save['responseCategory'] !== '200') {
+            return EventConfig::output($save);
+        }
 
-        // Save listener first
-        return EventConfig::output(EventConfig::saveJson($listenerFile, $data));  
-         
+        return EventConfig::output(
+            EventConfig::success("Event deleted successfully", "3831", "200", $deletedEvent)
+        );
     }
-    
+
+    public static function update(string $eventName, array $updateData = []): array|string
+    {
+        $eventFile = EventConfig::getEventFile();
+
+        $load = EventConfig::loadJson($eventFile, 'events');
+        if ($load['responseCategory'] !== '200') {
+            return EventConfig::output($load);
+        }
+
+        $data = $load['responseData'];
+
+        $eventCheck = EventConfig::findEventIndex($data, $eventName);
+        if ($eventCheck['responseCategory'] !== '200') {
+            return EventConfig::output($eventCheck);
+        }
+
+        $eventIndex = $eventCheck['responseData']['index'];
+        $event = $data['events'][$eventIndex];
+
+        if (isset($updateData['status'])) {
+            $event['status'] = (bool) $updateData['status'];
+        }
+
+        if (isset($updateData['listeners'])) {
+            if (!is_array($updateData['listeners'])) {
+                return EventConfig::output(
+                    EventConfig::error("Listeners must be an array", "3832")
+                );
+            }
+
+            if (!empty($updateData['listeners'])) {
+                $listenerFile = EventConfig::getListenerFile();
+                $loadListeners = EventConfig::loadJson($listenerFile, 'listeners');
+
+                if ($loadListeners['responseCategory'] !== '200') {
+                    return EventConfig::output($loadListeners);
+                }
+
+                $listenerData = $loadListeners['responseData'];
+
+                foreach ($updateData['listeners'] as $listenerName) {
+                    $listenerCheck = EventConfig::findListenerIndex($listenerData, $listenerName);
+
+                    if ($listenerCheck['responseCategory'] !== '200') {
+                        return EventConfig::output($listenerCheck);
+                    }
+                }
+            }
+
+            $event['listeners'] = array_values(array_unique($updateData['listeners']));
+        }
+
+        $event['updated_at'] = EventConfig::now();
+
+        $data['events'][$eventIndex] = $event;
+
+        $save = EventConfig::saveJson($eventFile, $data);
+        if ($save['responseCategory'] !== '200') {
+            return EventConfig::output($save);
+        }
+
+        return EventConfig::output(
+            EventConfig::success("Event updated successfully", "3833", "200", $event)
+        );
+    }
 
     /* let event listen to listeners
     */
