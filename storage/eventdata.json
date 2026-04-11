@@ -1,58 +1,11 @@
 {
     "events": [
         {
-            "event_name": "userRegistered",
-            "status": true,
-            "created_at": "2026-04-06T21:27:14Z",
-            "updated_at": "2026-04-06T21:27:14Z",
-            "listeners": []
-        },
-        {
-            "event_name": "nameRegistered",
-            "status": true,
-            "created_at": "2026-04-06T21:29:54Z",
-            "updated_at": "2026-04-06T21:29:54Z",
-            "listeners": []
-        },
-        {
-            "event_name": "nameRegisteredw",
-            "status": true,
-            "created_at": "2026-04-06T22:06:51Z",
-            "updated_at": "2026-04-06T22:06:51Z",
-            "listeners": []
-        },
-        {
-            "event_name": "468294",
-            "status": true,
-            "created_at": "2026-04-08T03:54:58Z",
-            "updated_at": "2026-04-08T03:54:58Z",
-            "listeners": []
-        },
-        {
-            "event_name": "accountRegistra",
-            "status": true,
-            "created_at": "2026-04-08T03:57:58Z",
-            "updated_at": "2026-04-08T03:57:58Z",
-            "listeners": []
-        },
-        {
             "event_name": "BankRegistration",
             "status": true,
-            "created_at": "2026-04-09T08:10:12Z",
-            "updated_at": "2026-04-10T15:42:05Z",
-            "listeners": [
-                "468294",
-                "siteInfo"
-            ]
-        },
-        {
-            "event_name": "StudentData",
-            "status": true,
-            "created_at": "2026-04-09T13:59:59Z",
-            "updated_at": "2026-04-09T14:01:57Z",
-            "listeners": [
-                "BankRegistration"
-            ]
+            "created_at": "2026-04-11T18:10:25Z",
+            "updated_at": "2026-04-11T18:10:25Z",
+            "listeners": []
         }
     ]
 }

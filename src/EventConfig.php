@@ -6,8 +6,8 @@ namespace Lt\Events;
 
 class EventConfig
 {
-    protected static string $eventFile = __DIR__ . '/../storage/eventdata.json';
-    protected static string $listenerFile = __DIR__ . '/../storage/listenerdata.json';
+    // protected static string $eventFile = __DIR__ . '/../storage/eventdata.json';
+    // protected static string $listenerFile = __DIR__ . '/../storage/listenerdata.json';
     protected static string $responseType = 'json'; // array or json
 
     public static function setEventFile(string $filePath): void
@@ -17,6 +17,13 @@ class EventConfig
 
     public static function getEventFile(): string
     {
+        $storagePath = rtrim((string) EventSetting::get('storage_path'), '/\\');
+        $eventFile = trim((string) EventSetting::get('event_file', 'eventdata.json'));
+        if ($storagePath ==="" || $eventFile ===""){
+           return  __DIR__ . '/../storage/eventdata.json';
+        }
+        return $storagePath . DIRECTORY_SEPARATOR . $eventFile;
+
         return self::$eventFile;
     }
 
@@ -27,18 +34,30 @@ class EventConfig
 
     public static function getListenerFile(): string
     {
-        return self::$listenerFile;
+        $storagePath = rtrim((string) EventSetting::get('storage_path'), '/\\');
+        $listenerFile = trim((string) EventSetting::get('listener_file', 'listenerdata.json'));
+        if ($storagePath ==="" || $listenerFile ===""){
+           return  __DIR__ . '/../storage/listenerdata.json';
+        }
+        return $storagePath . DIRECTORY_SEPARATOR . $listenerFile; 
     }
 
     //setting out the output type
-    public static function setResponseType(string $type): void
+    public static function setResponseType(): void
     {
-        self::$responseType = strtolower($type) === 'json' ? 'json' : 'array';
+        $retu =  EventSetting::get('response_type');
+       if($retu ==="json" || $retu ==="array"){
+        self::$responseType = $retu;
+       }else{
+        self::$responseType = "array";
+       } 
     }
 
     public static function output(array $response): array|string
     {
-        if (self::$responseType === 'json') {
+        self::setResponseType();
+
+        if (self::$responseType === 'json') { 
             return json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
         }
 
@@ -70,11 +89,11 @@ class EventConfig
         return self::success("File ready","3815","200",['filePath' => $filePath]);
     }
      
-    public static function loadJson(string $filePath, string $rootKey): array
+    public static function loadJson(string $filePath, string $rootKey): array|string
     {
         $ensureFileExists =  self::ensureFileExists($filePath, $rootKey); 
         if ($ensureFileExists['responseCategory'] !== '200') {
-            return EventConfig::output($ensureFileExists);
+            return $ensureFileExists;
         }
 
         $content = @file_get_contents($filePath);

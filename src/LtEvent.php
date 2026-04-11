@@ -10,6 +10,15 @@ class LtEvent
         EventConfig::setEventFile($filePath);
     }
 
+
+    public static function get(): array | string
+    {
+        return EventSetting::get();
+    }
+    public static function set(string $key, mixed $value): array | string
+    {
+        return EventSetting::set($key, $value);
+    }
     public static function register(string $eventName, array $listeners=[], bool $status = true): array | string
     {
         $eventFile = EventConfig::getEventFile();
@@ -62,7 +71,7 @@ class LtEvent
         ];
 
         $data['events'][] = $record;
-        //return EventConfig::output(EventConfig::saveJson($eventFile, $data));
+       // return EventConfig::output(EventConfig::saveJson($eventFile, $data));
 
         $save = EventConfig::saveJson($eventFile, $data);
         if ($save['responseCategory'] !== '200') {

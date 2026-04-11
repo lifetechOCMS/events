@@ -42,7 +42,13 @@ class LtListener
         $data['listeners'][] = $record;
 
         // Save listener first
-        return EventConfig::output(EventConfig::saveJson($listenerFile, $data));  
+        //return EventConfig::output(EventConfig::saveJson($listenerFile, $data));   
+
+        $save = EventConfig::saveJson($listenerFile, $data);
+        if ($save['responseCategory'] !== '200') {
+            return EventConfig::output($save);
+        }
+        return EventConfig::output(EventConfig::success("Listener registered successfully","3863","200",$record));
          
     }
     
