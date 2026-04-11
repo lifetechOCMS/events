@@ -2,11 +2,19 @@
     "listeners": [
         {
             "listener_name": "BankRegistration",
-            "listener_class": "\\Lt\\Modules\\Services",
+            "listener_class": "\\Lt\\Modules\\Services\\BankRecord",
             "handler_method": "sendMail",
             "status": true,
             "created_at": "2026-04-09T09:21:46Z",
             "updated_at": "2026-04-09T09:21:46Z"
+        },
+        {
+            "listener_name": "siteInfo",
+            "listener_class": "Lt\\Modules\\MdLt\\Services\\LtSiteInfo",
+            "handler_method": "dbName",
+            "status": true,
+            "created_at": "2026-04-10T15:40:29Z",
+            "updated_at": "2026-04-10T15:40:29Z"
         }
     ]
 }

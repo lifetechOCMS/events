@@ -72,7 +72,10 @@ class EventConfig
      
     public static function loadJson(string $filePath, string $rootKey): array
     {
-        self::ensureFileExists($filePath, $rootKey);
+        $ensureFileExists =  self::ensureFileExists($filePath, $rootKey); 
+        if ($ensureFileExists['responseCategory'] !== '200') {
+            return EventConfig::output($ensureFileExists);
+        }
 
         $content = @file_get_contents($filePath);
 
@@ -114,21 +117,13 @@ class EventConfig
         return self::success("JSON saved successfully","3811","200",$data);
     }
 
-    public static function validateCamelCase(string $value, string $label): void
-    {
-        if (!preg_match('/^[a-z][a-zA-Z0-9]*$/', $value)) {
-            throw new \InvalidArgumentException(
-                ucfirst($label) . " must be camelCase. Given: {$value}"
-            );
-        }
-    }
-
+    
     public static function now(): string
     {
         return gmdate('Y-m-d\TH:i:s\Z');
     }
   
-    public static function findEventIndex(array $data, string $eventName): array|string
+    public static function findEventIndex(array $data, string $eventName): array
     {
         foreach (($data['events'] ?? []) as $index => $event) {
             if (($event['event_name'] ?? null) === $eventName) {
@@ -136,10 +131,10 @@ class EventConfig
                 return self::success("{$index}","3825","200",['index'=>$index]);
             }
         }
-        return self::error("Event not found: {$listenerName}","3822");
+        return self::error("Event not found: {$eventName}","3822");
     }
 
-    public static function findListenerIndex(array $data, string $listenerName): array|string
+    public static function findListenerIndex(array $data, string $listenerName): array
     {
         foreach (($data['listeners'] ?? []) as $index => $listener) {
             if (($listener['listener_name'] ?? null) === $listenerName) {

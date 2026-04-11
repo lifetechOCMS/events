@@ -62,8 +62,14 @@ class LtEvent
         ];
 
         $data['events'][] = $record;
+        //return EventConfig::output(EventConfig::saveJson($eventFile, $data));
 
-        return EventConfig::output(EventConfig::saveJson($eventFile, $data));
+        $save = EventConfig::saveJson($eventFile, $data);
+        if ($save['responseCategory'] !== '200') {
+            return EventConfig::output($save);
+        }
+        return EventConfig::output(EventConfig::success("Event registered successfully","3862","200",$record));
+
     }
 
     public static function delete(string $eventName): array|string

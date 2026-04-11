@@ -5,7 +5,7 @@ namespace Lt\Events;
 
 class LtDispatcher
 {
-    public static function dispatch(string $eventName, array $payload = []): array|string
+    public static function dispatch(string $eventName, mixed $payload = null): array|string
     {
         $eventFile = EventConfig::getEventFile();
         $listenerFile = EventConfig::getListenerFile();
@@ -118,7 +118,7 @@ class LtDispatcher
             }
 
             try {
-                $listenerResponse = $instance->{$handlerMethod}($payload, $eventName);
+                $listenerResponse = $instance->{$handlerMethod}($payload);
 
                 $results[] = [
                     'listener_name' => $listenerName,
