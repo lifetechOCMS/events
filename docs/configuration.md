@@ -2,20 +2,31 @@
 
 The package uses `EventSetting` for persistent JSON configuration.
 
-## Set values
+## Read all settings
 
 ```php
 use Lt\Events\EventSetting;
 
-EventSetting::set('storage_path', __DIR__ . '/storage/events');
-EventSetting::set('event_file', 'eventdata.json');
-EventSetting::set('listener_file', 'listenerdata.json');
-EventSetting::set('response_type', 'array');
+print_r(EventSetting::get());
 ```
 
-## Read values
+## Read one setting
 
 ```php
-EventSetting::get();
-EventSetting::get('storage_path');
+echo EventSetting::get('storage_path');
+```
+
+## Update a setting
+
+```php
+print_r(EventSetting::set('storage_path', __DIR__ . '/storage/events'));
+print_r(EventSetting::set('response_type', 'json'));
+```
+
+## Setting keys currently used
+
+- `storage_path`
+- `event_file`
+- `listener_file`
+- `response_type`
 ```

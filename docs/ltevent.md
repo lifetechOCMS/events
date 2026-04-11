@@ -44,6 +44,57 @@ $result = LtEvent::register('userRegistered', ['sendWelcomeEmail', 'logActivity'
 print_r($result);
 ```
 
+#### Success Response Example
+
+```php
+[
+    'responseResult' => 'Event registered successfully',
+    'responseCode' => '3862',
+    'responseCategory' => '200',
+    'responseData' => [
+        'event_name' => 'userRegistered',
+        'status' => true,
+        'created_at' => '2026-04-11T12:00:00Z',
+        'updated_at' => '2026-04-11T12:00:00Z',
+        'listeners' => []
+    ]
+]
+```
+
+---
+
+### `LtEvent::getAll(): array|string`
+
+#### Syntax
+
+```php
+LtEvent::getAll();
+```
+
+#### Example
+
+```php
+$result = LtEvent::getAll();
+print_r($result);
+```
+
+---
+
+### `LtEvent::delete(string $eventName): array|string`
+
+#### Syntax
+
+```php
+LtEvent::delete(string $eventName);
+```
+
+#### Example
+
+```php
+$result = LtEvent::delete('userRegistered');
+print_r($result);
+```
+
 ---
 
 ### `LtEvent::update(string $eventName, array $updateData = []): array|string`
@@ -84,23 +135,6 @@ print_r($result);
 
 ---
 
-### `LtEvent::delete(string $eventName): array|string`
-
-#### Syntax
-
-```php
-LtEvent::delete(string $eventName);
-```
-
-#### Example
-
-```php
-$result = LtEvent::delete('userRegistered');
-print_r($result);
-```
-
----
-
 ### `LtEvent::listen(string $eventName, string $listenerName): array|string`
 
 #### Syntax
@@ -131,40 +165,4 @@ LtEvent::unlisten(string $eventName, string $listenerName);
 ```php
 $result = LtEvent::unlisten('userRegistered', 'sendWelcomeEmail');
 print_r($result);
-```
-
----
-
-### `LtEvent::getAll(): array|string`
-
-#### Syntax
-
-```php
-LtEvent::getAll();
-```
-
-#### Example
-
-```php
-$result = LtEvent::getAll();
-print_r($result);
-```
-
----
-
-## Example Success Response
-
-```php
-[
-    'responseResult' => 'Event registered successfully',
-    'responseCode' => '3811',
-    'responseCategory' => '200',
-    'responseData' => [
-        'event_name' => 'userRegistered',
-        'status' => true,
-        'created_at' => '2026-04-11T12:00:00Z',
-        'updated_at' => '2026-04-11T12:00:00Z',
-        'listeners' => []
-    ]
-]
 ```

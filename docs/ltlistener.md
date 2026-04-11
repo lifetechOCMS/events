@@ -4,12 +4,12 @@
 
 ## Methods
 
-### `LtListener::setListenerFile(string $filePath): void`
+### `LtListener::setEventFile(string $filePath): void`
 
 #### Syntax
 
 ```php
-LtListener::setListenerFile(string $filePath);
+LtListener::setEventFile(string $filePath);
 ```
 
 #### Example
@@ -17,12 +17,14 @@ LtListener::setListenerFile(string $filePath);
 ```php
 use Lt\Events\LtListener;
 
-LtListener::setListenerFile(__DIR__ . '/storage/custom-listeners.json');
+LtListener::setEventFile(__DIR__ . '/storage/custom-events.json');
 ```
+
+> Note: this method name currently targets the event file, not the listener file. This reflects the current code exactly.
 
 ---
 
-### `LtListener::register(string $listenerName, string $listenerClass, string $handlerMethod = 'handle', bool $status = true): array|string`
+### `LtListener::register(string $listenerName, string $listenerClass, string $handlerMethod = 'handle', ?string $eventName = null, bool $status = true): array|string`
 
 #### Syntax
 
@@ -31,6 +33,7 @@ LtListener::register(
     string $listenerName,
     string $listenerClass,
     string $handlerMethod = 'handle',
+    ?string $eventName = null,
     bool $status = true
 );
 ```
@@ -52,8 +55,44 @@ $result = LtListener::register(
     'logActivity',
     App\Listeners\LogActivity::class,
     'process',
+    null,
     true
 );
+print_r($result);
+```
+
+#### Success Response Example
+
+```php
+[
+    'responseResult' => 'Listener registered successfully',
+    'responseCode' => '3863',
+    'responseCategory' => '200',
+    'responseData' => [
+        'listener_name' => 'sendWelcomeEmail',
+        'listener_class' => 'App\\Listeners\\SendWelcomeEmail',
+        'handler_method' => 'handle',
+        'status' => true,
+        'created_at' => '2026-04-11T12:00:00Z',
+        'updated_at' => '2026-04-11T12:00:00Z'
+    ]
+]
+```
+
+---
+
+### `LtListener::getAll(): array|string`
+
+#### Syntax
+
+```php
+LtListener::getAll();
+```
+
+#### Example
+
+```php
+$result = LtListener::getAll();
 print_r($result);
 ```
 
@@ -114,37 +153,38 @@ print_r($result);
 
 ---
 
-### `LtListener::getAll(): array|string`
+### `LtListener::listen(string $eventName, string $listenerName): array|string`
 
 #### Syntax
 
 ```php
-LtListener::getAll();
+LtListener::listen(string $eventName, string $listenerName);
 ```
 
 #### Example
 
 ```php
-$result = LtListener::getAll();
+$result = LtListener::listen('userRegistered', 'sendWelcomeEmail');
 print_r($result);
 ```
 
+> This method proxies to `LtEvent::listen()`.
+
 ---
 
-## Example Success Response
+### `LtListener::unlisten(string $eventName, string $listenerName): array|string`
+
+#### Syntax
 
 ```php
-[
-    'responseResult' => 'Listener registered successfully',
-    'responseCode' => '3824',
-    'responseCategory' => '200',
-    'responseData' => [
-        'listener_name' => 'sendWelcomeEmail',
-        'listener_class' => 'App\\Listeners\\SendWelcomeEmail',
-        'handler_method' => 'handle',
-        'status' => true,
-        'created_at' => '2026-04-11T12:00:00Z',
-        'updated_at' => '2026-04-11T12:00:00Z'
-    ]
-]
+LtListener::unlisten(string $eventName, string $listenerName);
 ```
+
+#### Example
+
+```php
+$result = LtListener::unlisten('userRegistered', 'sendWelcomeEmail');
+print_r($result);
+```
+
+> This method proxies to `LtEvent::unlisten()`.

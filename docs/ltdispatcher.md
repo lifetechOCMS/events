@@ -54,3 +54,12 @@ public static function handle($payload)
     // ...
 }
 ```
+
+## Dispatch Result Details
+
+The dispatcher aggregates per-listener results into the final response:
+
+- success
+- skipped
+- failed
+- listener handler return value

@@ -1,69 +1,92 @@
 # Response Codes Reference
 
-This file lists the currently used response codes in the package.
+This document matches the **current codebase**.
 
-## General / File / Settings Codes
+## EventConfig / File / JSON Codes
 
-| Code | Category | Meaning |
+| Code | Category | Current Result |
 |---|---|---|
-| 3800 | 100 | Generic package error |
-| 3801 | 100 | Unable to create directory |
-| 3802 | 100 | Unable to encode initial JSON |
-| 3803 | 100 | Unable to create file |
-| 3804 | 200 | File is ready |
+| 3800 | 100 | Generic package error default |
 | 3805 | 100 | Unable to read file |
 | 3806 | 200 | Empty file, default structure returned |
-| 3807 | 100 | Invalid JSON structure |
+| 3807 | 100 | Invalid JSON structure in file |
 | 3808 | 200 | JSON loaded successfully |
-| 3809 | 100 | Unable to encode JSON for save |
-| 3810 | 100 | Unable to write JSON file |
-| 3811 | 200 | Event registered successfully / JSON saved successfully depending on context |
+| 3809 | 100 | Unable to encode JSON for file |
+| 3810 | 100 | Unable to write file |
+| 3811 | 200 | JSON saved successfully |
 
-## Event Codes
+## File Preparation Codes
 
-| Code | Category | Meaning |
+| Code | Category | Current Result |
 |---|---|---|
-| 3811 | 200 | Event registered successfully |
-| 3820 | 100 | Event already exists |
+| 3812 | 100 | Unable to create directory |
+| 3813 | 100 | Unable to encode initial JSON |
+| 3814 | 100 | Unable to create file |
+| 3815 | 200 | File ready |
+
+## Lookup Codes
+
+| Code | Category | Current Result |
+|---|---|---|
+| 3821 | 100 | Listener not found |
 | 3822 | 100 | Event not found |
-| 3826 | 200 | Event found |
+| 3825 | 200 | Event found |
+| 3826 | 200 | Listener found |
+
+> Note: in the current implementation, the success message for `3825` and `3826` is the numeric index as a string, while the response data contains the real index.
+
+## Event Operation Codes
+
+| Code | Category | Current Result |
+|---|---|---|
+| 3820 | 100 | Event already exists |
 | 3827 | 100 | Listener already linked to event |
 | 3828 | 200 | Listener linked to event successfully |
 | 3829 | 100 | Listener is not linked to event |
 | 3830 | 200 | Listener removed from event successfully |
 | 3831 | 200 | Event deleted successfully |
-| 3832 | 100 | Invalid listener array when updating event |
+| 3832 | 100 | Listeners must be an array |
 | 3833 | 200 | Event updated successfully |
 | 3837 | 200 | Events loaded successfully |
+| 3862 | 200 | Event registered successfully |
 
-## Listener Codes
+## Listener Operation Codes
 
-| Code | Category | Meaning |
+| Code | Category | Current Result |
 |---|---|---|
-| 3823 | 100 | Listener already exists / Listener not found depending on context in current implementation |
-| 3824 | 200 | Listener registered successfully |
-| 3825 | 200 | Listener found |
+| 3823 | 100 | Listener already exists |
 | 3832 | 200 | Listener deleted successfully |
 | 3833 | 200 | Listener updated successfully |
 | 3838 | 200 | Listeners loaded successfully |
+| 3863 | 200 | Listener registered successfully |
 
 ## Dispatcher Codes
 
-| Code | Category | Meaning |
+| Code | Category | Current Result |
 |---|---|---|
 | 3834 | 100 | Event is disabled |
 | 3835 | 200 | No listeners attached to event |
 | 3836 | 200 | Event dispatched successfully |
 
-## Settings Codes
+## EventSetting Codes
 
-| Code | Category | Meaning |
+| Code | Category | Current Result |
 |---|---|---|
 | 3840 | 100 | Unable to create settings directory |
 | 3841 | 100 | Unable to encode settings JSON |
 | 3842 | 100 | Unable to save settings file |
 | 3843 | 200 | Settings saved successfully |
 
-## Notes
+## Important Note About Duplicates
 
-Some codes are currently reused across more than one context. Before public release, it is worth normalizing them so each business outcome has a unique code.
+Some response codes are reused in more than one context:
+
+- `3811` is both **JSON saved successfully** and used previously in event-related success discussions, but the current code now uses `3862` for event registration.
+- `3832` is used for both:
+  - event update error: `Listeners must be an array`
+  - listener delete success: `Listener deleted successfully`
+- `3833` is used for both:
+  - event updated successfully
+  - listener updated successfully
+
+For a public package release, it would be better to normalize these into unique codes.
