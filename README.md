@@ -13,4 +13,5 @@ A lightweight, file-based event and listener system for PHP applications.
 - [LtEvent API](docs/ltevent.md)
 - [LtListener API](docs/ltlistener.md)
 - [LtDispatcher API](docs/ltdispatcher.md)
+- [Response Codes](docs/response-codes.md)
 - [Architecture](docs/architecture.md)

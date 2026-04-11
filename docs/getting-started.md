@@ -20,3 +20,14 @@ LtDispatcher::dispatch('userRegistered', [
     'email' => 'user@example.com'
 ]);
 ```
+
+## Typical Response Structure
+
+```php
+[
+    'responseResult' => '...',
+    'responseCode' => '3811',
+    'responseCategory' => '200',
+    'responseData' => [...]
+]
+```

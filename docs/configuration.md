@@ -1,8 +1,8 @@
 # Configuration
 
-The package uses `EventSetting` for persistent configuration.
+The package uses `EventSetting` for persistent JSON configuration.
 
-## Example
+## Set values
 
 ```php
 use Lt\Events\EventSetting;
@@ -13,7 +13,7 @@ EventSetting::set('listener_file', 'listenerdata.json');
 EventSetting::set('response_type', 'array');
 ```
 
-## Read settings
+## Read values
 
 ```php
 EventSetting::get();

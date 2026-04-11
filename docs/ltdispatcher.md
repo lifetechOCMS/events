@@ -2,33 +2,42 @@
 
 `LtDispatcher` executes all listeners attached to an event.
 
-## Available Methods
+## Method
 
 ### `LtDispatcher::dispatch(string $eventName, mixed $payload = null): array|string`
 
-Dispatch an event and pass payload to every attached listener.
+#### Syntax
 
 ```php
-LtDispatcher::dispatch('userRegistered', [
+LtDispatcher::dispatch(string $eventName, mixed $payload = null);
+```
+
+#### Example 1: Array payload
+
+```php
+$result = LtDispatcher::dispatch('userRegistered', [
     'email' => 'user@example.com'
 ]);
+print_r($result);
 ```
 
-String payload example:
+#### Example 2: String payload
 
 ```php
-LtDispatcher::dispatch('logEvent', 'User logged in');
+$result = LtDispatcher::dispatch('logEvent', 'User logged in');
+print_r($result);
 ```
 
-Object payload example:
+#### Example 3: Object payload
 
 ```php
-LtDispatcher::dispatch('syncProfile', $userDto);
+$result = LtDispatcher::dispatch('syncProfile', $userDto);
+print_r($result);
 ```
 
-## Listener Method Signature
+## Listener Handler Signature
 
-The dispatcher sends **one parameter only** to the listener handler:
+The dispatcher sends **one parameter only** to the handler:
 
 ```php
 public function handle($payload)
@@ -37,7 +46,7 @@ public function handle($payload)
 }
 ```
 
-Static handler is also supported:
+Static handlers are also supported:
 
 ```php
 public static function handle($payload)

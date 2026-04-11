@@ -2,13 +2,21 @@
 
 `LtEvent` manages event records and event-listener relationships.
 
-## Available Methods
+## Methods
 
 ### `LtEvent::setEventFile(string $filePath): void`
 
-Override the event data file path directly.
+#### Syntax
 
 ```php
+LtEvent::setEventFile(string $filePath);
+```
+
+#### Example
+
+```php
+use Lt\Events\LtEvent;
+
 LtEvent::setEventFile(__DIR__ . '/storage/custom-events.json');
 ```
 
@@ -16,91 +24,135 @@ LtEvent::setEventFile(__DIR__ . '/storage/custom-events.json');
 
 ### `LtEvent::register(string $eventName, array $listeners = [], bool $status = true): array|string`
 
-Create a new event.
+#### Syntax
 
 ```php
-LtEvent::register('userRegistered');
+LtEvent::register(string $eventName, array $listeners = [], bool $status = true);
 ```
 
-Register an event with listeners already attached:
+#### Example 1: Register event only
 
 ```php
-LtEvent::register('userRegistered', ['sendWelcomeEmail'], true);
+$result = LtEvent::register('userRegistered');
+print_r($result);
+```
+
+#### Example 2: Register event with listeners
+
+```php
+$result = LtEvent::register('userRegistered', ['sendWelcomeEmail', 'logActivity'], true);
+print_r($result);
 ```
 
 ---
 
 ### `LtEvent::update(string $eventName, array $updateData = []): array|string`
 
-Update an existing event.
-
-Supported update keys currently include:
-
-- `status`
-- `listeners`
+#### Syntax
 
 ```php
-LtEvent::update('userRegistered', [
+LtEvent::update(string $eventName, array $updateData = []);
+```
+
+#### Example 1: Update status
+
+```php
+$result = LtEvent::update('userRegistered', [
     'status' => false
 ]);
+print_r($result);
 ```
 
+#### Example 2: Replace listeners
+
 ```php
-LtEvent::update('userRegistered', [
+$result = LtEvent::update('userRegistered', [
     'listeners' => ['sendWelcomeEmail', 'logActivity']
 ]);
+print_r($result);
 ```
 
+#### Example 3: Update status and listeners together
+
 ```php
-LtEvent::update('userRegistered', [
+$result = LtEvent::update('userRegistered', [
     'status' => true,
     'listeners' => ['sendWelcomeEmail']
 ]);
+print_r($result);
 ```
 
 ---
 
 ### `LtEvent::delete(string $eventName): array|string`
 
-Delete an event.
+#### Syntax
 
 ```php
-LtEvent::delete('userRegistered');
+LtEvent::delete(string $eventName);
+```
+
+#### Example
+
+```php
+$result = LtEvent::delete('userRegistered');
+print_r($result);
 ```
 
 ---
 
 ### `LtEvent::listen(string $eventName, string $listenerName): array|string`
 
-Attach a listener to an event.
+#### Syntax
 
 ```php
-LtEvent::listen('userRegistered', 'sendWelcomeEmail');
+LtEvent::listen(string $eventName, string $listenerName);
+```
+
+#### Example
+
+```php
+$result = LtEvent::listen('userRegistered', 'sendWelcomeEmail');
+print_r($result);
 ```
 
 ---
 
 ### `LtEvent::unlisten(string $eventName, string $listenerName): array|string`
 
-Remove a listener from an event.
+#### Syntax
 
 ```php
-LtEvent::unlisten('userRegistered', 'sendWelcomeEmail');
+LtEvent::unlisten(string $eventName, string $listenerName);
+```
+
+#### Example
+
+```php
+$result = LtEvent::unlisten('userRegistered', 'sendWelcomeEmail');
+print_r($result);
 ```
 
 ---
 
 ### `LtEvent::getAll(): array|string`
 
-Load all event records.
+#### Syntax
 
 ```php
 LtEvent::getAll();
 ```
 
+#### Example
+
+```php
+$result = LtEvent::getAll();
+print_r($result);
+```
+
 ---
 
-## Example Response Format
+## Example Success Response
 
 ```php
 [
