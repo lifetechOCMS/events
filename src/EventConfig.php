@@ -89,7 +89,7 @@ class EventConfig
         return self::success("File ready","3815","200",['filePath' => $filePath]);
     }
      
-    public static function loadJson(string $filePath, string $rootKey): array|string
+    public static function loadJson(string $filePath, string $rootKey): array
     {
         $ensureFileExists =  self::ensureFileExists($filePath, $rootKey); 
         if ($ensureFileExists['responseCategory'] !== '200') {
