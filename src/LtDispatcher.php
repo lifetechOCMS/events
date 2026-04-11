@@ -106,9 +106,9 @@ class LtDispatcher
                 continue;
             }
 
-            $instance = new $listenerClass();
-
-            if (!method_exists($instance, $handlerMethod)) {
+            //$instance = new $listenerClass();
+ 
+            if (!method_exists($listenerClass, $handlerMethod)) {
                 $results[] = [
                     'listener_name' => $listenerName,
                     'status' => 'failed',
@@ -118,7 +118,16 @@ class LtDispatcher
             }
 
             try {
-                $listenerResponse = $instance->{$handlerMethod}($payload);
+                $reflection = new \ReflectionMethod($listenerClass, $handlerMethod);
+
+                if ($reflection->isStatic()) {
+                    // Static method call
+                    $listenerResponse = $listenerClass::$handlerMethod($payload);
+                } else {
+                    // Instance method call
+                    $instance = new $listenerClass();
+                    $listenerResponse = $instance->{$handlerMethod}($payload);
+                }
 
                 $results[] = [
                     'listener_name' => $listenerName,
@@ -128,13 +137,14 @@ class LtDispatcher
                 ];
 
                 $executedListeners[] = $listenerName;
+
             } catch (\Throwable $e) {
                 $results[] = [
                     'listener_name' => $listenerName,
                     'status' => 'failed',
                     'message' => $e->getMessage()
                 ];
-            }
+            }            
         }
 
         return EventConfig::output(

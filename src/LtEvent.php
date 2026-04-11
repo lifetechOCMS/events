@@ -11,11 +11,11 @@ class LtEvent
     }
 
 
-    public static function get(): array | string
+    public static function getSettingFile(): array | string
     {
         return EventSetting::get();
     }
-    public static function set(string $key, mixed $value): array | string
+    public static function setSettingFile(string $key, mixed $value): array | string
     {
         return EventSetting::set($key, $value);
     }
@@ -79,6 +79,25 @@ class LtEvent
         }
         return EventConfig::output(EventConfig::success("Event registered successfully","3862","200",$record));
 
+    }
+
+    public static function getAll(): array|string
+    {
+        $eventFile = EventConfig::getEventFile();
+
+        $load = EventConfig::loadJson($eventFile, 'events');
+        if ($load['responseCategory'] !== '200') {
+            return EventConfig::output($load);
+        }
+
+        return EventConfig::output(
+            EventConfig::success(
+                "Events loaded successfully",
+                "3837",
+                "200",
+                $load['responseData']['events'] ?? []
+            )
+        );
     }
 
     public static function delete(string $eventName): array|string

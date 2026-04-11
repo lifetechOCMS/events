@@ -51,6 +51,27 @@ class LtListener
         return EventConfig::output(EventConfig::success("Listener registered successfully","3863","200",$record));
          
     }
+
+
+    public static function getAll(): array|string
+    {
+        $listenerFile = EventConfig::getListenerFile();
+
+        $load = EventConfig::loadJson($listenerFile, 'listeners');
+        if ($load['responseCategory'] !== '200') {
+            return EventConfig::output($load);
+        }
+
+        return EventConfig::output(
+            EventConfig::success(
+                "Listeners loaded successfully",
+                "3838",
+                "200",
+                $load['responseData']['listeners'] ?? []
+            )
+        );
+    }
+
     
     public static function update(string $listenerName, array $updateData = []): array|string
     {
