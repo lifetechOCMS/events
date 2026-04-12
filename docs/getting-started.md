@@ -1,4 +1,4 @@
-## [Getting Home](../readme.md)
+## [Getting Home](../README.md)
 
 # Getting Started
 
