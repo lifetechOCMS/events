@@ -34,7 +34,7 @@ Unlike traditional event systems, this package is:
 
 Most PHP event systems are:
 
-- tightly coupled to frameworks (Laravel, Symfony)  
+- tightly coupled to frameworks   
 - require service containers  
 - complex to configure  
 
@@ -45,17 +45,6 @@ Most PHP event systems are:
 ✔ File-based persistence (no DB needed)  
 ✔ Flexible event-listener mapping  
 ✔ Clean response structure for APIs  
-
----
-
-# ✨ Key Features
-
-- 🔄 Event registration and lifecycle management  
-- 🎧 Listener registration and execution  
-- ⚡ Dispatcher supporting static & instance methods  
-- 💾 JSON-based persistent storage  
-- ⚙️ Runtime configuration via `EventSetting`  
-- 📦 Fully modular and extensible  
 
 ---
 
@@ -87,20 +76,16 @@ LtDispatcher::dispatch('userRegistered', [
     'email' => 'user@example.com'
 ]);
 ```
-
 ---
+# Documentation
 
-# 🧠 How It Works
-
-```
-EventSetting (JSON config)
-        ↓
-EventConfig (file + helpers)
-        ↓
-LtEvent / LtListener
-        ↓
-LtDispatcher (execution engine)
-```
+- [Getting Started](docs/getting-started.md)
+- [Configuration](docs/configuration.md)
+- [LtEvent API](docs/ltevent.md)
+- [LtListener API](docs/ltlistener.md)
+- [LtDispatcher API](docs/ltdispatcher.md)
+- [Response Codes](docs/response-codes.md)
+- [Architecture](docs/architecture.md)
 
 ---
 
@@ -115,25 +100,6 @@ LtDispatcher (execution engine)
 
 ---
 
-# 👥 Who Should Use This?
-
-- PHP Developers  
-- Backend Engineers  
-- Laravel / Symfony users  
-- LifeTech OCMS users  
-
----
-
-# ⚙️ Configuration
-
-```php
-use Lt\Events\EventSetting;
-
-EventSetting::set('storage_path', __DIR__ . '/storage/events');
-EventSetting::set('response_type', 'json');
-```
-
----
 
 # 🔁 Response Format
 
@@ -146,33 +112,13 @@ EventSetting::set('response_type', 'json');
 ]
 ```
 
----
-
-# 📚 Documentation
-
-- docs/getting-started.md  
-- docs/ltevent.md  
-- docs/ltlistener.md  
-- docs/ltdispatcher.md  
-- docs/response-codes.md  
-
----
+ ---
 
 # 🔒 Security Best Practices
 
 - store JSON files outside public web root  
 - validate listener classes  
 - restrict file permissions  
-
----
-
-# 🛣️ Roadmap
-
-- Event priority system  
-- Async / queue support  
-- Middleware  
-- Plugin system  
-- Event logging  
 
 ---
 
