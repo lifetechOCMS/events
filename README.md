@@ -83,8 +83,8 @@ LtDispatcher::dispatch('userRegistered', [
 - [Configuration](docs/configuration.md) || :: Creating and Managing of your Events
 - [LtEvent API](docs/ltevent.md) :: Creating and Managing of your Events
 - [LtListener API](docs/ltlistener.md) || Creating and managing  your Listeners.
-- [LtDispatcher API](docs/ltdispatcher.md) -- How to Disptach your event with payload
-- [Response Codes](docs/response-codes.md) -- Understanding all the response codes available
+- [LtDispatcher API](docs/ltdispatcher.md) ⬅ How to Disptach your event with payload
+- [Response Codes](docs/response-codes.md) ← Understanding all the response codes available
 - [Architecture](docs/architecture.md)
 
 ---
