@@ -1,4 +1,4 @@
-# 📦 LifeTech Events — Lightweight PHP Event System
+# 📦 LifeTechOCMS Events — Lightweight PHP Event System
 
 ![PHP Version](https://img.shields.io/badge/PHP-8.1+-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -14,7 +14,7 @@
 
 # 🚀 Overview
 
-**LifeTech Events** is a powerful yet simple **event-driven architecture package for PHP** that allows developers to:
+**LifeTechOCMS Events** is a powerful yet simple **event-driven architecture package for PHP** that allows developers to:
 
 - create and manage events  
 - register listeners dynamically  
@@ -30,7 +30,7 @@ Unlike traditional event systems, this package is:
 
 ---
 
-# 🔍 Why Use LifeTech Events?
+# 🔍 Why Use LifeTechOCMS Events?
 
 Most PHP event systems are:
 
@@ -38,9 +38,9 @@ Most PHP event systems are:
 - require service containers  
 - complex to configure  
 
-### LifeTech Events solves this by offering:
+### LifeTechOCMS Events solves this by offering:
 
-✔ Can work with any framework Laravel, Shopify, Drupal and the likes  
+✔ Works with any PHP framework (Laravel, Symfony, Drupal, Shopify, etc.)
 ✔ Zero framework dependency  
 ✔ Simple and intuitive API  
 ✔ File-based persistence (no DB needed)  
@@ -82,14 +82,23 @@ LtDispatcher::dispatch('userRegistered', ['email' => 'user@example.com']);
 ---
 # Documentation
 
-- [Getting Started](docs/getting-started.md)⬅ Basic things to know
-- [LtEvent API](docs/ltevent.md) ⬅ Creating and managing your Events
-- [LtListener API](docs/ltlistener.md) ⬅ Creating and managing  your Listeners.
-- [LtDispatcher API](docs/ltdispatcher.md) ⬅ How to Disptach your event with payload
-- [Response Codes](docs/response-codes.md) ⬅ Understanding all the response codes available
-- [Configuration](docs/configuration.md) ⬅ Configuring your storage location (optional)
-- [Architecture](docs/architecture.md) ⬅ Glance through the architechure
+- [Getting Started](docs/getting-started.md)⬅ Basic concepts
+- [LtEvent API](docs/ltevent.md) ⬅ Manage events
+- [LtListener API](docs/ltlistener.md) ⬅ Manage listeners.
+- [LtDispatcher API](docs/ltdispatcher.md) ⬅ Dispatch events
+- [Response Codes](docs/response-codes.md) ⬅ Full respomse code reference
+- [Configuration](docs/configuration.md) ⬅ Storage setup(optional)
+- [Architecture](docs/architecture.md) ⬅ System overview
 
+---
+# ✨ Key Features
+
+- Event registration and lifecycle management  
+- Listener registration and execution  
+- Dispatcher supporting static & instance methods  
+- JSON-based persistent storage  
+- Runtime configuration via EventSetting  
+- Framework-agnostic design  
 ---
 
 # 🎯 Use Cases
