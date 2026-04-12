@@ -81,7 +81,7 @@ LtDispatcher::dispatch('userRegistered', [
 
 - [Getting Started](docs/getting-started.md)
 - [Configuration](docs/configuration.md)
-- [LtEvent API](docs/ltevent.md)
+- [LtEvent API](docs/ltevent.md) :: Creating and Managing of Events
 - [LtListener API](docs/ltlistener.md)
 - [LtDispatcher API](docs/ltdispatcher.md)
 - [Response Codes](docs/response-codes.md)
