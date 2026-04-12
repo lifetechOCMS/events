@@ -40,6 +40,7 @@ Most PHP event systems are:
 
 ### LifeTech Events solves this by offering:
 
+✔ Can work with any framework Laravel, Shopify, Drupal and the likes  
 ✔ Zero framework dependency  
 ✔ Simple and intuitive API  
 ✔ File-based persistence (no DB needed)  
@@ -63,18 +64,20 @@ use Lt\Events\LtEvent;
 use Lt\Events\LtListener;
 use Lt\Events\LtDispatcher;
 
-LtEvent::register('userRegistered');
+LtEvent::register('userRegistered'); //userRegistered is the eventName
 
+//listenerName, ListenerClassPath, and ListenerClassMethod
 LtListener::register(
     'sendWelcomeEmail',
-    App\Listeners\SendWelcomeEmail::class
+    'App\Listeners\SendWelcomeEmail',
+    'sendTo'
 );
 
+//to allow Event to Listen to a Listener
 LtEvent::listen('userRegistered', 'sendWelcomeEmail');
 
-LtDispatcher::dispatch('userRegistered', [
-    'email' => 'user@example.com'
-]);
+//to Dispatch an Event with a payload, the payload can be array,string or object
+LtDispatcher::dispatch('userRegistered', ['email' => 'user@example.com']);
 ```
 ---
 # Documentation
