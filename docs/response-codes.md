@@ -1,6 +1,13 @@
-# Response Codes Reference
+## [Home](../README.md)
 
-This document matches the **current codebase**.
+# Response Codes Management
+
+## Overview
+the response code comes with four parameters which are responseResult, ResponseCode,responseCategory and responseData
+the responsse category has two values 100 for fail while 200 for succes,
+response code is in 4 digit between the range of 3800 to 3900 for those that want to contribute
+response result is the string result of the message
+response data is the avalilablity of data probablit wocing with the response
 
 ## EventConfig / File / JSON Codes
 

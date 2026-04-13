@@ -1,4 +1,4 @@
-## [Getting Home](../README.md)
+## [Home](../README.md)
 
 # Getting Started
 
@@ -27,7 +27,7 @@ LtDispatcher::dispatch('userRegistered', [
 
 ```php
 [
-    'responseResult' => '...',
+    'responseResult' => 'Event Registered',
     'responseCode' => '3811',
     'responseCategory' => '200',
     'responseData' => [...]

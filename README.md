@@ -64,8 +64,10 @@ use Lt\Events\LtEvent;
 use Lt\Events\LtListener;
 use Lt\Events\LtDispatcher;
 
+//Event Registration
 LtEvent::register('userRegistered'); //userRegistered is the eventName
 
+//Listener Registration
 //listenerName, ListenerClassPath, and ListenerClassMethod
 LtListener::register(
     'sendWelcomeEmail',
@@ -115,15 +117,13 @@ LtDispatcher::dispatch('userRegistered', ['email' => 'user@example.com']);
 
 # 🔁 Response Format
 
-```php
-[
-  'responseResult' => '...',
-  'responseCode' => '3862',
-  'responseCategory' => '200',
-  'responseData' => [...]
-]
-```
+Set Response output to either Array or Json
 
+```php
+use Lt\Events\EventSetting;
+EventSetting::set('responseType','json'); //json or array
+```
+See more on responses at [All Available Response Codes](docs/response-codes.md)
  ---
 
 # 🔒 Security Best Practices
