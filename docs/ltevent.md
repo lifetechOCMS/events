@@ -1,33 +1,18 @@
+## [Home](../README.md)
+
 # LtEvent API
 
 `LtEvent` manages event records and event-listener relationships.
 
 ## Methods
 
-### `LtEvent::setEventFile(string $filePath): void`
+
+### `LtEvent::register()`
 
 #### Syntax
 
 ```php
-LtEvent::setEventFile(string $filePath);
-```
-
-#### Example
-
-```php
-use Lt\Events\LtEvent;
-
-LtEvent::setEventFile(__DIR__ . '/storage/custom-events.json');
-```
-
----
-
-### `LtEvent::register(string $eventName, array $listeners = [], bool $status = true): array|string`
-
-#### Syntax
-
-```php
-LtEvent::register(string $eventName, array $listeners = [], bool $status = true);
+LtEvent::register($eventName, $listeners,  $status );
 ```
 
 #### Example 1: Register event only
@@ -40,7 +25,7 @@ print_r($result);
 #### Example 2: Register event with listeners
 
 ```php
-$result = LtEvent::register('userRegistered', ['sendWelcomeEmail', 'logActivity'], true);
+$result = LtEvent::register('userRegistered', ['sendWelcomeEmail', 'logActivity']);
 print_r($result);
 ```
 
@@ -80,12 +65,12 @@ print_r($result);
 
 ---
 
-### `LtEvent::delete(string $eventName): array|string`
+### `LtEvent::delete( $eventName): array|string`
 
 #### Syntax
 
 ```php
-LtEvent::delete(string $eventName);
+LtEvent::delete( $eventName);
 ```
 
 #### Example
@@ -97,12 +82,12 @@ print_r($result);
 
 ---
 
-### `LtEvent::update(string $eventName, array $updateData = []): array|string`
+### `LtEvent::update($eventName,   $updateData )`
 
 #### Syntax
 
 ```php
-LtEvent::update(string $eventName, array $updateData = []);
+LtEvent::update(  $eventName,   $updateData  );
 ```
 
 #### Example 1: Update status
@@ -135,12 +120,12 @@ print_r($result);
 
 ---
 
-### `LtEvent::listen(string $eventName, string $listenerName): array|string`
+### `LtEvent::listen(  $eventName,   $listenerName)`
 
 #### Syntax
 
 ```php
-LtEvent::listen(string $eventName, string $listenerName);
+LtEvent::listen(  $eventName, $listenerName);
 ```
 
 #### Example
@@ -152,12 +137,12 @@ print_r($result);
 
 ---
 
-### `LtEvent::unlisten(string $eventName, string $listenerName): array|string`
+### `LtEvent::unlisten(  $eventName,   $listenerName) `
 
 #### Syntax
 
 ```php
-LtEvent::unlisten(string $eventName, string $listenerName);
+LtEvent::unlisten(  $eventName,   $listenerName);
 ```
 
 #### Example

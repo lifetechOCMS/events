@@ -123,7 +123,7 @@ Set Response output to either Array or Json
 use Lt\Events\EventSetting;
 EventSetting::set('responseType','json'); //json or array
 ```
-See more on responses at [All Available Response Codes](docs/response-codes.md)
+See more [Available Response Codes](docs/response-codes.md)
  ---
 
 # 🔒 Security Best Practices
