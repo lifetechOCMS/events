@@ -12,16 +12,7 @@
 - [update()](#lteventupdate)
 - [listen()](#lteventlisten)
 - [unlisten()](#lteventunlisten)
-
-## Methods
-
-### `LtEvent::register()`
-
-#### Syntax
-
-```php
-LtEvent::register($eventName, $listeners, $status);
-
+ 
 
 ## [Home](../README.md)
 
