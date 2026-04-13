@@ -1,3 +1,28 @@
+## [⬅ Home](../README.md)
+
+# LtEvent API
+
+`LtEvent` manages event records and event-listener relationships.
+
+## Table of Contents
+
+- [register()](#lteventregister)
+- [getAll()](#lteventgetall)
+- [delete()](#lteventdelete)
+- [update()](#lteventupdate)
+- [listen()](#lteventlisten)
+- [unlisten()](#lteventunlisten)
+
+## Methods
+
+### `LtEvent::register()`
+
+#### Syntax
+
+```php
+LtEvent::register($eventName, $listeners, $status);
+
+
 ## [Home](../README.md)
 
 # LtEvent API
