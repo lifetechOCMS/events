@@ -5,12 +5,12 @@
 
 ## Table of Contents
 
-- [register()](#lteventregister)
-- [getAll()](#lteventgetall)
-- [delete()](#lteventdelete)
-- [update()](#lteventupdate)
-- [listen()](#lteventlisten)
-- [unlisten()](#lteventunlisten)
+- [register()](#ltlistenerregister)
+- [getAll()](#ltlistenergetall)
+- [delete()](#ltlistenerdelete)
+- [update()](#ltlistenerupdate)
+- [listen()](#ltlistenerlisten)
+- [unlisten()](#ltlistenerunlisten)
 
 
 ## Methods
