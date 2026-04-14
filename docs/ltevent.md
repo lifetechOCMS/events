@@ -140,8 +140,8 @@ print_r($result);
 ---
 
 ### `LtEvent::listen()`
-Allow Event to listen to a Listener
-You can read more on listener @ [LtListener API](ltlistener.md)
+Allow Event to listen to a Listener,
+you can read more on listener @ [LtListener API](ltlistener.md)
 #### Syntax
 
 ```php
@@ -158,8 +158,8 @@ print_r($result);
 ---
 
 ### `LtEvent::unlisten()`
-Allow Event to unlisten to a Listener
-You can read more on listener @ [LtListener API](ltlistener.md)
+Allow Event to unlisten to a Listener,
+you can read more on listener @ [LtListener API](ltlistener.md)
 #### Syntax
 
 ```php
