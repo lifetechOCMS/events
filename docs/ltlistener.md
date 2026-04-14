@@ -121,7 +121,7 @@ print_r($result);
 
 ---
 
-### `LtListener::delete($listenerName)`
+### `LtListener::delete()`
 
 #### Syntax
 
@@ -140,7 +140,7 @@ print_r($result);
 
 ---
 
-### `LtListener::listen($eventName,$listenerName)`
+### `LtListener::listen()`
 
 #### Syntax
 
@@ -161,7 +161,7 @@ print_r($result);
 
 ---
 
-### `LtListener::unlisten($eventName, $listenerName)`
+### `LtListener::unlisten()`
 
 #### Syntax
 
