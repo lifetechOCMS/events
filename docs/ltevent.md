@@ -25,6 +25,7 @@
 
 ### `LtEvent::register()`
 
+Register New Event to the system
 #### Syntax
 
 ```php
