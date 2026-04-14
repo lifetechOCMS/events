@@ -1,14 +1,23 @@
 ### [Home](../README.md) || [Getting Started](getting-started.md) ||  [LtEvent API](ltevent.md) || [LtListener API](ltlistener.md) ||  [LtDispatcher API](ltdispatcher.md)|| [Response Codes](response-codes.md) || [Configuration](configuration.md)  || [Architecture](architecture.md) 
 ---
 
-# Response Codes Management
+# Response Codes Reference (LifeTechOCMS Events)
 
 ## Overview
-the response code comes with four parameters which are responseResult, ResponseCode,responseCategory and responseData
-the responsse category has two values 100 for fail while 200 for succes,
-response code is in 4 digit between the range of 3800 to 3900 for those that want to contribute
-response result is the string result of the message
-response data is the avalilablity of data probablit wocing with the response
+Each response consists of four parameters:
+
+- `responseResult` → descriptive message
+- `responseCode` → unique 4-digit identifier
+- `responseCategory` → status (100 = failure, 200 = success)
+- `responseData` → additional data payload
+
+The `responseCategory` has two possible values:
+
+- `100` → failure  
+- `200` → success  
+
+`responseData` contains any additional data returned with the response.
+ 
 
 ## EventConfig / File / JSON Codes
 
@@ -84,6 +93,26 @@ response data is the avalilablity of data probablit wocing with the response
 | 3841 | 100 | Unable to encode settings JSON |
 | 3842 | 100 | Unable to save settings file |
 | 3843 | 200 | Settings saved successfully |
+
+## Best Practices
+
+- Always check `responseCategory` before processing data  
+- Do not rely on `responseResult` for logic (use `responseCode`)  
+- Treat response codes as constants in your application  
+- Log response codes for debugging and monitoring  
+
+## Example Response
+
+```php
+[
+    'responseResult' => 'Event registered successfully',
+    'responseCode' => '3862',
+    'responseCategory' => '200',
+    'responseData' => [
+        'event_name' => 'userRegistered'
+    ]
+]
+```
 
 ## Important Note About Duplicates
 
