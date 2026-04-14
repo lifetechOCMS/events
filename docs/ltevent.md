@@ -67,6 +67,7 @@ print_r($result);
 
 ### `LtEvent::getAll()`
 
+List all Available Events
 #### Syntax
 
 ```php
@@ -84,6 +85,7 @@ print_r($result);
 
 ### `LtEvent::delete()`
 
+Deleta an Event
 #### Syntax
 
 ```php
@@ -100,7 +102,7 @@ print_r($result);
 ---
 
 ### `LtEvent::update()`
-
+Update an Event
 #### Syntax
 
 ```php
@@ -138,7 +140,8 @@ print_r($result);
 ---
 
 ### `LtEvent::listen()`
-
+Allow Event to listen to a Listener
+You can read more on listener @ [LtListener API](ltlistener.md)
 #### Syntax
 
 ```php
@@ -155,7 +158,8 @@ print_r($result);
 ---
 
 ### `LtEvent::unlisten()`
-
+Allow Event to unlisten to a Listener
+You can read more on listener @ [LtListener API](ltlistener.md)
 #### Syntax
 
 ```php
