@@ -7,33 +7,37 @@
 
 ## Method
 
-### `LtDispatcher::dispatch(string $eventName, mixed $payload = null): array|string`
+### `LtDispatcher::dispatch($eventName, $payload)`
 
 #### Syntax
 
 ```php
-LtDispatcher::dispatch(string $eventName, mixed $payload = null);
+use Lt\Events\LtDispatcher;
+LtDispatcher::dispatch($eventName, $payload);
 ```
 
-#### Example 1: Array payload
+#### Example 1: Dispatch with Array payload
 
 ```php
+use Lt\Events\LtDispatcher;
 $result = LtDispatcher::dispatch('userRegistered', [
     'email' => 'user@example.com'
 ]);
 print_r($result);
 ```
 
-#### Example 2: String payload
+#### Example 2: Dispatch with String payload
 
 ```php
+use Lt\Events\LtDispatcher;
 $result = LtDispatcher::dispatch('logEvent', 'User logged in');
 print_r($result);
 ```
 
-#### Example 3: Object payload
+#### Example 3: Dispatch with  Object payload
 
 ```php
+use Lt\Events\LtDispatcher;
 $result = LtDispatcher::dispatch('syncProfile', $userDto);
 print_r($result);
 ```
