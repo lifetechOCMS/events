@@ -1,11 +1,4 @@
-## [Home](../README.md)
-
-
-[Getting Started](docs/getting-started.md) ||  [LtEvent API](docs/ltevent.md) || [LtListener API](docs/ltlistener.md)
-- [LtDispatcher API](docs/ltdispatcher.md) ⬅ Dispatch events
-- [Response Codes](docs/response-codes.md) ⬅ Full respomse code reference
-- [Configuration](docs/configuration.md) ⬅ Storage setup(optional)
-- [Architecture](docs/architecture.md) ⬅ System overview
+## [Home](../README.md) || [Getting Started](docs/getting-started.md) ||  [LtEvent API](docs/ltevent.md) || [LtListener API](docs/ltlistener.md) ||  [LtDispatcher API](docs/ltdispatcher.md)|| [Response Codes](docs/response-codes.md) || [Configuration](docs/configuration.md)  || [Architecture](docs/architecture.md) 
 
 # Getting Started
 
