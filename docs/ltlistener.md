@@ -44,20 +44,17 @@ print_r($result);
 
 #### Success Response Example
 You can read more on response codes from [Here](response-codes.md)
+
+
+#### Example of a Listener Class
+You can read more on response codes from [Here](response-codes.md)
 ```php
-[
-    'responseResult' => 'Listener registered successfully',
-    'responseCode' => '3863',
-    'responseCategory' => '200',
-    'responseData' => [
-        'listener_name' => 'sendWelcomeEmail',
-        'listener_class' => 'App\\Listeners\\SendWelcomeEmail',
-        'handler_method' => 'handle',
-        'status' => true,
-        'created_at' => '2026-04-11T12:00:00Z',
-        'updated_at' => '2026-04-11T12:00:00Z'
-    ]
-]
+class LogActivity
+{
+    public function processTo(){
+        return "Listener Listened to an event";
+    }
+}
 ```
 
 ---
