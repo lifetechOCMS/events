@@ -64,7 +64,7 @@ print_r($result);
 
 ---
 
-### `LtEvent::getAll(): array|string`
+### `LtEvent::getAll()`
 
 #### Syntax
 
@@ -98,7 +98,7 @@ print_r($result);
 
 ---
 
-### `LtEvent::update($eventName,   $updateData )`
+### `LtEvent::update()`
 
 #### Syntax
 
@@ -136,7 +136,7 @@ print_r($result);
 
 ---
 
-### `LtEvent::listen(  $eventName,   $listenerName)`
+### `LtEvent::listen()`
 
 #### Syntax
 
@@ -153,7 +153,7 @@ print_r($result);
 
 ---
 
-### `LtEvent::unlisten(  $eventName,   $listenerName) `
+### `LtEvent::unlisten()`
 
 #### Syntax
 
