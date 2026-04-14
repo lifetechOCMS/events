@@ -1,4 +1,4 @@
-### [Home](../README.md) || [Getting Started](getting-started.md) ||  [LtEvent API](ltevent.md) || [LtListener API](docs/ltlistener.md) ||  [LtDispatcher API](docs/ltdispatcher.md)|| [Response Codes](docs/response-codes.md) || [Configuration](docs/configuration.md)  || [Architecture](docs/architecture.md) 
+### [Home](../README.md) || [Getting Started](getting-started.md) ||  [LtEvent API](ltevent.md) || [LtListener API](ltlistener.md) ||  [LtDispatcher API](ltdispatcher.md)|| [Response Codes](response-codes.md) || [Configuration](configuration.md)  || [Architecture](architecture.md) 
 ---
 # Getting Started
 
