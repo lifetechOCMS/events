@@ -14,12 +14,6 @@
 - [unlisten()](#lteventunlisten)
  
 
-## [Home](../README.md)
-
-# LtEvent API
-
-`LtEvent` manages event records and event-listener relationships.
-
 ## Methods
 
 

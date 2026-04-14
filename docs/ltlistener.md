@@ -2,67 +2,48 @@
 
 `LtListener` manages listener records.
 
+
+## Table of Contents
+
+- [register()](#lteventregister)
+- [getAll()](#lteventgetall)
+- [delete()](#lteventdelete)
+- [update()](#lteventupdate)
+- [listen()](#lteventlisten)
+- [unlisten()](#lteventunlisten)
+
+
 ## Methods
 
-### `LtListener::setEventFile(string $filePath): void`
 
+### `LtListener::register()`
+Register New Listener
 #### Syntax
-
-```php
-LtListener::setEventFile(string $filePath);
-```
-
-#### Example
 
 ```php
 use Lt\Events\LtListener;
-
-LtListener::setEventFile(__DIR__ . '/storage/custom-events.json');
-```
-
-> Note: this method name currently targets the event file, not the listener file. This reflects the current code exactly.
-
----
-
-### `LtListener::register(string $listenerName, string $listenerClass, string $handlerMethod = 'handle', ?string $eventName = null, bool $status = true): array|string`
-
-#### Syntax
-
-```php
 LtListener::register(
-    string $listenerName,
-    string $listenerClass,
-    string $handlerMethod = 'handle',
-    ?string $eventName = null,
-    bool $status = true
+     $listenerName,
+     $listenerClass,
+     $handlerMethod,
 );
 ```
+ 
 
-#### Example 1: Register with default handler
-
-```php
-$result = LtListener::register(
-    'sendWelcomeEmail',
-    App\Listeners\SendWelcomeEmail::class
-);
-print_r($result);
-```
-
-#### Example 2: Register with custom handler
+#### Example: Register with custom handler
 
 ```php
+use Lt\Events\LtListener;
 $result = LtListener::register(
     'logActivity',
-    App\Listeners\LogActivity::class,
-    'process',
-    null,
-    true
+    'App\Listeners\LogActivit',
+    'processTo', 
 );
 print_r($result);
 ```
 
 #### Success Response Example
-
+You can read more on response codes from [Here](response-codes.md)
 ```php
 [
     'responseResult' => 'Listener registered successfully',
@@ -81,34 +62,38 @@ print_r($result);
 
 ---
 
-### `LtListener::getAll(): array|string`
-
+### `LtListener::getAll()`
+List All Listeners
 #### Syntax
 
 ```php
+use Lt\Events\LtListener;
 LtListener::getAll();
 ```
 
 #### Example
 
 ```php
+use Lt\Events\LtListener;
 $result = LtListener::getAll();
 print_r($result);
 ```
 
 ---
 
-### `LtListener::update(string $listenerName, array $updateData = []): array|string`
+### `LtListener::update()`
 
 #### Syntax
 
 ```php
-LtListener::update(string $listenerName, array $updateData = []);
+use Lt\Events\LtListener;
+LtListener::update( $listenerName, $updateData );
 ```
 
 #### Example 1: Change handler method
 
 ```php
+use Lt\Events\LtListener;
 $result = LtListener::update('sendWelcomeEmail', [
     'handler_method' => 'process'
 ]);
@@ -118,6 +103,7 @@ print_r($result);
 #### Example 2: Disable listener
 
 ```php
+use Lt\Events\LtListener;
 $result = LtListener::update('sendWelcomeEmail', [
     'status' => false
 ]);
@@ -127,6 +113,7 @@ print_r($result);
 #### Example 3: Change class and handler
 
 ```php
+use Lt\Events\LtListener;
 $result = LtListener::update('sendWelcomeEmail', [
     'listener_class' => App\Listeners\Mail\SendWelcomeEmail::class,
     'handler_method' => 'handleNow'
@@ -141,12 +128,14 @@ print_r($result);
 #### Syntax
 
 ```php
+use Lt\Events\LtListener;
 LtListener::delete(string $listenerName);
 ```
 
 #### Example
 
 ```php
+use Lt\Events\LtListener;
 $result = LtListener::delete('sendWelcomeEmail');
 print_r($result);
 ```
@@ -158,12 +147,14 @@ print_r($result);
 #### Syntax
 
 ```php
+use Lt\Events\LtListener;
 LtListener::listen(string $eventName, string $listenerName);
 ```
 
 #### Example
 
 ```php
+use Lt\Events\LtListener;
 $result = LtListener::listen('userRegistered', 'sendWelcomeEmail');
 print_r($result);
 ```
@@ -177,12 +168,14 @@ print_r($result);
 #### Syntax
 
 ```php
+use Lt\Events\LtListener;
 LtListener::unlisten(string $eventName, string $listenerName);
 ```
 
 #### Example
 
 ```php
+use Lt\Events\LtListener;
 $result = LtListener::unlisten('userRegistered', 'sendWelcomeEmail');
 print_r($result);
 ```
