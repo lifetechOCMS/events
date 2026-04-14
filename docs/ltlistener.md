@@ -36,7 +36,7 @@ LtListener::register(
 use Lt\Events\LtListener;
 $result = LtListener::register(
     'logActivity',
-    'App\Listeners\LogActivit',
+    'App\Listeners\LogActivity',
     'processTo', 
 );
 print_r($result);
@@ -46,9 +46,10 @@ print_r($result);
 You can read more on response codes from [Here](response-codes.md)
 
 
-#### Example of a Listener Class
-You can read more on response codes from [Here](response-codes.md)
+#### Example of a Listener Class 
 ```php
+namespace App\Listeners;
+
 class LogActivity
 {
     public function processTo(){
@@ -120,13 +121,13 @@ print_r($result);
 
 ---
 
-### `LtListener::delete(string $listenerName): array|string`
+### `LtListener::delete($listenerName)`
 
 #### Syntax
 
 ```php
 use Lt\Events\LtListener;
-LtListener::delete(string $listenerName);
+LtListener::delete($listenerName);
 ```
 
 #### Example
@@ -139,13 +140,13 @@ print_r($result);
 
 ---
 
-### `LtListener::listen(string $eventName, string $listenerName): array|string`
+### `LtListener::listen($eventName,$listenerName)`
 
 #### Syntax
 
 ```php
 use Lt\Events\LtListener;
-LtListener::listen(string $eventName, string $listenerName);
+LtListener::listen($eventName, $listenerName);
 ```
 
 #### Example
@@ -160,13 +161,13 @@ print_r($result);
 
 ---
 
-### `LtListener::unlisten(string $eventName, string $listenerName): array|string`
+### `LtListener::unlisten($eventName, $listenerName)`
 
 #### Syntax
 
 ```php
 use Lt\Events\LtListener;
-LtListener::unlisten(string $eventName, string $listenerName);
+LtListener::unlisten( $eventName, $listenerName);
 ```
 
 #### Example

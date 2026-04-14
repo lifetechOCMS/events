@@ -44,7 +44,7 @@ print_r($result);
 ```
 
 #### Success Response Example
-
+You can read more on response codes from [Here](response-codes.md)
 ```php
 [
     'responseResult' => 'Event registered successfully',
