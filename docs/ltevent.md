@@ -81,7 +81,7 @@ print_r($result);
 
 ---
 
-### `LtEvent::delete(): array|string`
+### `LtEvent::delete()`
 
 #### Syntax
 
