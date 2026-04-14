@@ -1,8 +1,7 @@
 ## [Home](../README.md)
 
 
-- [Getting Started](docs/getting-started.md)⬅ Basic concepts
-- [LtEvent API](docs/ltevent.md) ⬅ Manage events
+[Getting Started](docs/getting-started.md)⬅ Basic concepts ||  [LtEvent API](docs/ltevent.md) ⬅ Manage events
 - [LtListener API](docs/ltlistener.md) ⬅ Manage listeners.
 - [LtDispatcher API](docs/ltdispatcher.md) ⬅ Dispatch events
 - [Response Codes](docs/response-codes.md) ⬅ Full respomse code reference
