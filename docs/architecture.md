@@ -1,9 +1,6 @@
 ### [Home](../README.md) || [Getting Started](getting-started.md) ||  [LtEvent API](ltevent.md) || [LtListener API](ltlistener.md) ||  [LtDispatcher API](ltdispatcher.md)|| [Response Codes](response-codes.md) || [Configuration](configuration.md)  || [Architecture & Storage](architecture.md) 
 ---
-# Architecture & Storage (LifeTech Events)
-
-[⬅ Home](../README.md)
-
+# Architecture & Storage (LifeTech Events) 
 ---
 
 # 🧠 Architecture Overview
