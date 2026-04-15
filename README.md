@@ -90,7 +90,7 @@ LtDispatcher::dispatch('userRegistered', ['email' => 'user@example.com']);
 - [LtDispatcher API](docs/ltdispatcher.md) ⬅ Dispatch events
 - [Response Codes](docs/response-codes.md) ⬅ Full respomse code reference
 - [Configuration](docs/configuration.md) ⬅ Storage setup(optional)
-- [Architecture](docs/architecture.md) ⬅ System overview
+- [Architecture & Storage](docs/architecture.md) ⬅ System overview
 
 ---
 # ✨ Key Features
