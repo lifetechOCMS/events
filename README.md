@@ -91,6 +91,7 @@ LtDispatcher::dispatch('userRegistered', ['email' => 'user@example.com']);
 - [Response Codes](docs/response-codes.md) ⬅ Full respomse code reference
 - [Configuration](docs/configuration.md) ⬅ Storage setup(optional)
 - [Architecture & Storage](docs/architecture.md) ⬅ System overview
+- [CONTRIBUTING](CONTRIBUTING.md) ⬅ System overview
 
 ---
 # ✨ Key Features
